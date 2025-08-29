@@ -22,7 +22,7 @@ export async function generateMetadata({
 		openGraph: {
 			title: `Note: ${note.title}`,
 			description: note.content.slice(0, 100),
-			url: `https://notehub.com/notes/${id}`,
+			url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/notes/${id}`,
 			siteName: "NoteHub",
 			type: "article",
 			images: [
