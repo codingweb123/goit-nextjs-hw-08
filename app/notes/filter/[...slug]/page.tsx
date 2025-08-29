@@ -5,6 +5,7 @@ import {
 } from "@tanstack/react-query"
 import { fetchNotes, getCategories, Tags } from "@/lib/api"
 import NotesClient from "./Notes.client"
+import { Metadata } from "next"
 
 interface NotesFilterProps {
 	params: Promise<{ slug: Tags }>
@@ -13,7 +14,9 @@ interface NotesFilterProps {
 export const dynamicParams = false
 export const revalidate = 900
 
-export async function generateMetadata({ params }: NotesFilterProps) {
+export async function generateMetadata({
+	params,
+}: NotesFilterProps): Promise<Metadata> {
 	const { slug } = await params
 	const descriptions = {
 		All: `Browse all your notes in one place. Stay organized and access everything instantly with Notehub.`,
@@ -58,7 +61,7 @@ export async function generateMetadata({ params }: NotesFilterProps) {
 }
 
 export const generateStaticParams = async () => {
-	const categories = getCategories
+	const categories = await getCategories()
 	return categories.map(category => ({ slug: [category] }))
 }
 

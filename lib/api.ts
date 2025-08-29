@@ -61,4 +61,6 @@ export const deleteNote = async (id: string) => {
 	return data
 }
 
-export const getCategories = Tags
+export const getCategories = async () => {
+	return Tags
+}

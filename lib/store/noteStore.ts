@@ -1,10 +1,11 @@
 import { create } from "zustand"
 import { persist } from "zustand/middleware"
+import { Tags } from "../api"
 
 export interface NewNoteData {
 	title: string
 	content: string
-	tag: string
+	tag: Tags[number]
 }
 
 interface NoteDraftStore {
@@ -16,7 +17,7 @@ interface NoteDraftStore {
 const initialDraft: NewNoteData = {
 	title: "",
 	content: "",
-	tag: "",
+	tag: "Todo",
 }
 
 export const useNoteDraftStore = create<NoteDraftStore>()(

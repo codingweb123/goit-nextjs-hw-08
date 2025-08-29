@@ -33,13 +33,10 @@ const NotesClient = ({ category }: NotesClientProps) => {
 	})
 
 	const totalPages = notes?.totalPages ?? 1
-	const onQueryChange = useDebouncedCallback(
-		(e: React.ChangeEvent<HTMLInputElement>) => {
-			setPage(1)
-			setQuery(e.target.value)
-		},
-		300
-	)
+	const onQueryChange = useDebouncedCallback(value => {
+		setPage(1)
+		setQuery(value)
+	}, 300)
 
 	if (isLoading) return <p>Loading, please wait...</p>
 	if (error || !notes)

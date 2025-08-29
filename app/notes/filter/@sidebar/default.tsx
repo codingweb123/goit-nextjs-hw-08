@@ -4,7 +4,7 @@ import { getCategories } from "@/lib/api"
 import { Routes } from "@/config/routes"
 
 const SidebarNotes = async () => {
-	const categories = getCategories
+	const categories = await getCategories()
 
 	return (
 		<ul className={css.menuList}>

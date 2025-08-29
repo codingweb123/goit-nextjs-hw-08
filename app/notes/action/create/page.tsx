@@ -37,7 +37,7 @@ export const metadata: Metadata = {
 }
 
 const CreateNote = async () => {
-	const categories = getCategories
+	const categories = await getCategories()
 	return (
 		<main className={css.main}>
 			<div className={css.container}>
