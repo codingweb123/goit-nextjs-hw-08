@@ -11,6 +11,12 @@ interface NoteDetailsProps {
 	params: Promise<{ id: string }>
 }
 
+const getBaseURL = () => {
+	return process.env.NODE_ENV === "production"
+		? `https://${process.env.NEXT_PUBLIC_PRODUCTION_URL}`
+		: `http://localhost:3000`
+}
+
 export async function generateMetadata({
 	params,
 }: NoteDetailsProps): Promise<Metadata> {
@@ -22,7 +28,7 @@ export async function generateMetadata({
 		openGraph: {
 			title: `Note: ${note.title}`,
 			description: note.content.slice(0, 100),
-			url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/notes/${id}`,
+			url: `${getBaseURL()}/notes/${id}`,
 			siteName: "NoteHub",
 			type: "article",
 			images: [
